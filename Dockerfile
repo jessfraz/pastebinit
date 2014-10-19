@@ -9,4 +9,4 @@ COPY server/ /src
 
 WORKDIR /src
 
-CMD [ "go", "run", "server.go" ]
+ENTRYPOINT [ "go", "run", "server.go" ]
