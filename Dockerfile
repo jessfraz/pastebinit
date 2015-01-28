@@ -1,12 +1,10 @@
-FROM golang:latest
+FROM progrium/busybox
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN go get github.com/sourcegraph/syntaxhighlight
+COPY server/static /src/static
 
-EXPOSE 8080
+ADD https://jesss.s3.amazonaws.com/binaries/pastebinit-server /usr/local/bin/pastebinit-server
 
-COPY server/ /src
+RUN chmod +x /usr/local/bin/pastebinit-server
 
-WORKDIR /src
-
-ENTRYPOINT [ "go", "run", "server.go" ]
+ENTRYPOINT [ "/usr/local/bin/pastebinit-server" ]
