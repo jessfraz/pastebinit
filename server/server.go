@@ -133,6 +133,13 @@ func pasteHandler(w http.ResponseWriter, r *http.Request) {
 		filename = strings.TrimSuffix(filename, "/raw")
 	}
 
+	// check if they want html
+	if strings.HasSuffix(filename, "/html") {
+		w.Header().Set("Content-Type", "text/html")
+		filename = strings.TrimSuffix(filename, "/html")
+		raw = true
+	}
+
 	// check if the file exists
 	if _, err := os.Stat(filename); os.IsNotExist(err) {
 		writeError(w, fmt.Sprintf("No such file or directory: %s", filename))
