@@ -241,6 +241,12 @@ func main() {
 			filename = strings.TrimSuffix(filename, "/raw")
 			serveRaw = true
 		}
+		// check if they want html
+		if strings.HasSuffix(filename, "/html") {
+			w.Header().Set("Content-Type", "text/html")
+			filename = strings.TrimSuffix(filename, "/html")
+			serveRaw = true
+		}
 
 		// check if file exists
 		if _, err := os.Stat(filename); os.IsNotExist(err) {
@@ -258,7 +264,7 @@ func main() {
 		if serveRaw {
 			// serve the file
 			w.Write(src)
-			log.Printf("raw paste served: %s", src)
+			log.Printf("raw paste served: %s", filename)
 			return
 		}
 
