@@ -241,7 +241,7 @@ func main() {
 			filename = strings.TrimSuffix(filename, "/raw")
 			serveRaw = true
 		}
-		// check if they want the raw file
+		// check if they want html
 		if strings.HasSuffix(filename, "/html") {
 			w.Header().Set("Content-Type", "text/html")
 			filename = strings.TrimSuffix(filename, "/html")
