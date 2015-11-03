@@ -20,7 +20,7 @@ var (
 	password = os.Getenv("PASTEBINIT_PASS")
 )
 
-// readFromStdin returns everything in stdin
+// readFromStdin returns everything in stdin.
 func readFromStdin() []byte {
 	stdin, err := ioutil.ReadAll(os.Stdin)
 	if err != nil {
@@ -29,7 +29,7 @@ func readFromStdin() []byte {
 	return stdin
 }
 
-// readFromFile returns the contents of a file
+// readFromFile returns the contents of a file.
 func readFromFile(filename string) []byte {
 	if _, err := os.Stat(filename); os.IsNotExist(err) {
 		logrus.Fatalf("No such file or directory: %q", filename)
@@ -43,7 +43,7 @@ func readFromFile(filename string) []byte {
 }
 
 // postPaste uploads the paste content to the server
-// and returns the paste URI
+// and returns the paste URI.
 func postPaste(content []byte) (string, error) {
 	// create the request
 	req, err := http.NewRequest("POST", baseuri+"paste", bytes.NewBuffer(content))

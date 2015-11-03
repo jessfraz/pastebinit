@@ -41,11 +41,11 @@ var (
 )
 
 // JSONResponse is a map[string]string
-// response from the web server
+// response from the web server.
 type JSONResponse map[string]string
 
 // String returns the string representation of the
-// JSONResponse object
+// JSONResponse object.
 func (j JSONResponse) String() string {
 	str, err := json.MarshalIndent(j, "", "  ")
 	if err != nil {
@@ -58,7 +58,7 @@ func (j JSONResponse) String() string {
 }
 
 // generateIndexHTML generates the html for the index page
-// to list all the pastes, via walking the storage directory
+// to list all the pastes, via walking the storage directory.
 func generateIndexHTML() (string, error) {
 	var files string
 
@@ -98,7 +98,7 @@ func generateIndexHTML() (string, error) {
 
 // pasteHandler is the request handler for / and /{pasteid}
 // it returns a list of all pastes to / if properly authed
-// and returns the paste to the public if /{pasteid} exists
+// and returns the paste to the public if /{pasteid} exists.
 func pasteHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/" {
 		// they want the root, make them auth
@@ -168,7 +168,7 @@ func pasteHandler(w http.ResponseWriter, r *http.Request) {
 
 // pasteUploadHander is the request handler for /paste
 // it creates a uuid for the paste and saves the contents of
-// the paste to that file
+// the paste to that file.
 func pasteUploadHandler(w http.ResponseWriter, r *http.Request) {
 	// check basic auth
 	u, p, ok := r.BasicAuth()
@@ -215,8 +215,8 @@ func pasteUploadHandler(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
-// uuid generates a uuid for the paste
-// this really does not need to be perfect
+// uuid generates a uuid for the paste.
+// This really does not need to be perfect.
 func uuid() (string, error) {
 	var chars = []byte("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
 
@@ -244,7 +244,7 @@ func uuid() (string, error) {
 }
 
 // writeError sends an error back to the requester
-// and also logrus. the error
+// and also logs the error.
 func writeError(w http.ResponseWriter, msg string) {
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Fprint(w, JSONResponse{
