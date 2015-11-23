@@ -1,6 +1,8 @@
 pastebinit
 ==========
 
+[![Circle CI](https://circleci.com/gh/jfrazelle/pastebinit.svg?style=svg)](https://circleci.com/gh/jfrazelle/pastebinit)
+
 Go implementation of pastebinit. Host your own pastebin and post things there. Example file I posted [here](https://paste.j3ss.co/F6CSRR5l).
 
 *Why you ask?* because pastebin.com has ads (booo) & is fugly as eff.
@@ -15,7 +17,7 @@ The command line tool can be installed as follows:
 $ go get github.com/jfrazelle/pastebinit
 ```
 
-You need to set `PASTEBINIT_USERNAME` and `PASTEBINIT_PASS` as enviornment variables, 
+You need to set `PASTEBINIT_USERNAME` and `PASTEBINIT_PASS` as enviornment variables,
 so the client knows how to auth on paste. To change the uri, pass the `-b` flag.
 
 Just like the pastebinit you are used to, this client can read from stdin & input. Heres some examples:
@@ -31,8 +33,8 @@ $ pastebinit -b yoururl.com server.go
 
 #### Server
 
-The server can be run in a docker container, via the included dockerfile. 
-You can use my image on the hub: [jess/pastebinit](https://registry.hub.docker.com/u/jess/pastebinit/) 
+The server can be run in a docker container, via the included dockerfile.
+You can use my image on the hub: [jess/pastebinit](https://registry.hub.docker.com/u/jess/pastebinit/)
 or you can build the image yourself via:
 
 ```bash
@@ -57,7 +59,7 @@ Example command to run the container:
 $ docker run -d --name=pastebinit --restart=always \
 -e PASTEBINIT_USERNAME=your_username -e PASTEBINIT_PASS=your_pass \
 -v  /home/jess/pastes:/src/files \
-docker_image_name -b https://myserver.com 
+docker_image_name -b https://myserver.com
 
 # to not share the paste volume
 $ docker run -d --name=pastebinit --restart=always \
