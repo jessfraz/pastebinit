@@ -1,10 +1,33 @@
-FROM progrium/busybox
+FROM alpine
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
+ENV PATH /go/bin:/usr/local/go/bin:$PATH
+ENV GOPATH /go
+
+RUN	apk update && apk add \
+	ca-certificates \
+	&& rm -rf /var/cache/apk/*
+
 COPY server/static /src/static
+COPY . /go/src/github.com/jfrazelle/pastebinit
 
-ADD https://jesss.s3.amazonaws.com/binaries/pastebinit-server /usr/local/bin/pastebinit-server
+RUN buildDeps=' \
+		go \
+		git \
+		gcc \
+		libc-dev \
+		libgcc \
+	' \
+	set -x \
+	&& apk update \
+	&& apk add $buildDeps \
+	&& cd /go/src/github.com/jfrazelle/pastebinit \
+	&& go get -d -v github.com/jfrazelle/pastebinit/server \
+	&& go build -o /usr/bin/pastebinit-server ./server \
+	&& apk del $buildDeps \
+	&& rm -rf /var/cache/apk/* \
+	&& rm -rf /go \
+	&& echo "Build complete."
 
-RUN chmod +x /usr/local/bin/pastebinit-server
 
-ENTRYPOINT [ "/usr/local/bin/pastebinit-server" ]
+ENTRYPOINT [ "pastebinit-server" ]
