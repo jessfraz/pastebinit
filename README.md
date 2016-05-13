@@ -1,7 +1,7 @@
 pastebinit
 ==========
 
-[![Circle CI](https://circleci.com/gh/jfrazelle/pastebinit.svg?style=svg)](https://circleci.com/gh/jfrazelle/pastebinit)
+[![Travis CI](https://travis-ci.org/jfrazelle/pastebinit.svg?branch=master)](https://travis-ci.org/jfrazelle/pastebinit)
 
 Go implementation of pastebinit. Host your own pastebin and post things there. Example file I posted [here](https://paste.j3ss.co/F6CSRR5l).
 
