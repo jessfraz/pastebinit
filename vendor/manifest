@@ -2,10 +2,34 @@
 	"version": 0,
 	"dependencies": [
 		{
+			"importpath": "github.com/BurntSushi/toml",
+			"repository": "https://github.com/BurntSushi/toml",
+			"vcs": "git",
+			"revision": "99064174e013895bbd9b025c31100bd1d9b590ca",
+			"branch": "master",
+			"notests": true
+		},
+		{
 			"importpath": "github.com/Sirupsen/logrus",
 			"repository": "https://github.com/Sirupsen/logrus",
 			"vcs": "git",
 			"revision": "3ec0642a7fb6488f65b06f9040adc67e3990296a",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/buildkite/terminal",
+			"repository": "https://github.com/buildkite/terminal",
+			"vcs": "git",
+			"revision": "cd166b814357bd410f518f02862ec012122bba02",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/codegangsta/cli",
+			"repository": "https://github.com/codegangsta/cli",
+			"vcs": "git",
+			"revision": "d53eb991652b1d438abdd34ce4bfa3ef1539108e",
 			"branch": "master",
 			"notests": true
 		},
@@ -22,6 +46,14 @@
 			"repository": "https://github.com/sourcegraph/syntaxhighlight",
 			"vcs": "git",
 			"revision": "637a8b8b94eca8bb8cd559b950cc4f42629ec137",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/urfave/cli",
+			"repository": "https://github.com/urfave/cli",
+			"vcs": "git",
+			"revision": "d53eb991652b1d438abdd34ce4bfa3ef1539108e",
 			"branch": "master",
 			"notests": true
 		},
@@ -48,6 +80,22 @@
 			"vcs": "git",
 			"revision": "31e6fd4bd5a98d8ee7673d24bc54ec73c31810dd",
 			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "gopkg.in/urfave/cli.v1",
+			"repository": "https://gopkg.in/urfave/cli.v1",
+			"vcs": "git",
+			"revision": "a14d7d367bc02b1f57d88de97926727f2d936387",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "gopkg.in/yaml.v2",
+			"repository": "https://gopkg.in/yaml.v2",
+			"vcs": "git",
+			"revision": "31c299268d302dd0aa9a0dcf765a3d58971ac83f",
+			"branch": "v2",
 			"notests": true
 		}
 	]

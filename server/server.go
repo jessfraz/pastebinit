@@ -13,6 +13,7 @@ import (
 	"strings"
 
 	"github.com/Sirupsen/logrus"
+	"github.com/buildkite/terminal"
 	"github.com/sourcegraph/syntaxhighlight"
 )
 
@@ -23,6 +24,7 @@ const (
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="/static/favicon.ico" />
 <link rel="stylesheet" media="all" href="/static/main.css"/>
+<link rel="stylesheet" media="all" href="/static/ansi.css"/>
 </head>
 <body>`
 	htmlEnd string = `</body>
@@ -124,20 +126,42 @@ func pasteHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	filename := filepath.Join(storage, strings.Trim(r.URL.Path, "/"))
-	raw := strings.HasSuffix(filename, "/raw")
 
-	if raw {
+	var handler func(data []byte) (string, error)
+
+	if strings.HasSuffix(filename, "/raw") {
 		// if they want the raw file serve a text/plain Content-Type
 		w.Header().Set("Content-Type", "text/plain")
 		// trim '/raw' from the filename so we can get the right file
 		filename = strings.TrimSuffix(filename, "/raw")
-	}
-
-	// check if they want html
-	if strings.HasSuffix(filename, "/html") {
+		handler = func(data []byte) (string, error) {
+			return string(data), nil
+		}
+	} else if strings.HasSuffix(filename, "/html") {
+		// check if they want html
 		w.Header().Set("Content-Type", "text/html")
 		filename = strings.TrimSuffix(filename, "/html")
-		raw = true
+		handler = func(data []byte) (string, error) {
+			return string(data), nil
+		}
+	} else if strings.HasSuffix(filename, "/ansi") {
+		// check if they want ansi colored text
+		w.Header().Set("Content-Type", "text/html")
+		filename = strings.TrimSuffix(filename, "/ansi")
+		// try to syntax highlight the file
+		handler = func(data []byte) (string, error) {
+			return fmt.Sprintf("%s<pre><code>%s</code></pre>%s", htmlBegin, terminal.Render(data), htmlEnd), nil
+		}
+	} else {
+		// check if they want html
+		w.Header().Set("Content-Type", "text/html")
+		handler = func(data []byte) (string, error) {
+			highlighted, err := syntaxhighlight.AsHTML(data)
+			if err != nil {
+				return "", err
+			}
+			return fmt.Sprintf("%s<pre><code>%s</code></pre>%s", htmlBegin, string(highlighted), htmlEnd), nil
+		}
 	}
 
 	// check if the file exists
@@ -153,23 +177,12 @@ func pasteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if raw {
-		// serve the raw file
-		w.Write(src)
-		logrus.Printf("raw paste served: %s", filename)
-		return
-	}
-
-	// try to syntax highlight the file
-	highlighted, err := syntaxhighlight.AsHTML(src)
+	data, err := handler(src)
 	if err != nil {
-		writeError(w, fmt.Sprintf("Highlighting file %s failed: %v", filename, err))
-		return
+		writeError(w, fmt.Sprintf("Processing file %s failed: %v", filename, err))
 	}
 
-	// serve the highlighted file
-	fmt.Fprintf(w, "%s<pre><code>%s</code></pre>%s", htmlBegin, string(highlighted), htmlEnd)
-	logrus.Printf("highlighted paste served: %s", filename)
+	io.WriteString(w, data)
 	return
 }
 
