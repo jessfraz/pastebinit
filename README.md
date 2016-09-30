@@ -1,7 +1,7 @@
 pastebinit
 ==========
 
-[![Travis CI](https://travis-ci.org/jfrazelle/pastebinit.svg?branch=master)](https://travis-ci.org/jfrazelle/pastebinit)
+[![Travis CI](https://travis-ci.org/jessfraz/pastebinit.svg?branch=master)](https://travis-ci.org/jessfraz/pastebinit)
 
 Go implementation of pastebinit. Host your own pastebin and post things there. Example file I posted [here](https://paste.j3ss.co/F6CSRR5l).
 
@@ -14,7 +14,7 @@ Go implementation of pastebinit. Host your own pastebin and post things there. E
 The command line tool can be installed as follows:
 
 ```bash
-$ go get github.com/jfrazelle/pastebinit
+$ go get github.com/jessfraz/pastebinit
 ```
 
 You need to set `PASTEBINIT_USERNAME` and `PASTEBINIT_PASS` as enviornment variables,
@@ -38,7 +38,7 @@ You can use my image on the hub: [jess/pastebinit](https://registry.hub.docker.c
 or you can build the image yourself via:
 
 ```bash
-$ git clone git@github.com/jfrazelle/pastebinit.git
+$ git clone git@github.com/jessfraz/pastebinit.git
 $ cd pastebinit
 $ docker build -i your_name/pastebinit .
 ```

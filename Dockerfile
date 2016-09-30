@@ -8,7 +8,7 @@ RUN	apk add --no-cache \
 	ca-certificates
 
 COPY server/static /src/static
-COPY . /go/src/github.com/jfrazelle/pastebinit
+COPY . /go/src/github.com/jessfraz/pastebinit
 
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \
@@ -17,7 +17,7 @@ RUN set -x \
 		gcc \
 		libc-dev \
 		libgcc \
-	&& cd /go/src/github.com/jfrazelle/pastebinit \
+	&& cd /go/src/github.com/jessfraz/pastebinit \
 	&& go build -o /usr/bin/pastebinit-server ./server \
 	&& apk del .build-deps \
 	&& rm -rf /go \
