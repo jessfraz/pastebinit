@@ -11,11 +11,11 @@ Go implementation of pastebinit. Host your own pastebin and post things there. E
 
 #### Binaries
 
-- **darwin** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.1.0/pastebinit-darwin-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.1.0/pastebinit-darwin-amd64)
-- **freebsd** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.1.0/pastebinit-freebsd-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.1.0/pastebinit-freebsd-amd64)
-- **linux** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.1.0/pastebinit-linux-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.1.0/pastebinit-linux-amd64) / [arm](https://github.com/jessfraz/pastebinit/releases/download/v0.1.0/pastebinit-linux-arm) / [arm64](https://github.com/jessfraz/pastebinit/releases/download/v0.1.0/pastebinit-linux-arm64)
-- **solaris** [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.1.0/pastebinit-solaris-amd64)
-- **windows** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.1.0/pastebinit-windows-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.1.0/pastebinit-windows-amd64)
+- **darwin** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.1.1/pastebinit-darwin-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.1.1/pastebinit-darwin-amd64)
+- **freebsd** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.1.1/pastebinit-freebsd-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.1.1/pastebinit-freebsd-amd64)
+- **linux** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.1.1/pastebinit-linux-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.1.1/pastebinit-linux-amd64) / [arm](https://github.com/jessfraz/pastebinit/releases/download/v0.1.1/pastebinit-linux-arm) / [arm64](https://github.com/jessfraz/pastebinit/releases/download/v0.1.1/pastebinit-linux-arm64)
+- **solaris** [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.1.1/pastebinit-solaris-amd64)
+- **windows** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.1.1/pastebinit-windows-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.1.1/pastebinit-windows-amd64)
 
 #### Via Go
 
