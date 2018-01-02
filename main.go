@@ -11,10 +11,30 @@ import (
 	"strings"
 
 	"github.com/Sirupsen/logrus"
+	"github.com/jessfraz/pastebinit/version"
+)
+
+const (
+	// BANNER is what is printed for help/info output.
+	BANNER = `                 _       _     _       _ _
+ _ __   __ _ ___| |_ ___| |__ (_)_ __ (_) |_
+| '_ \ / _` + "`" + ` / __| __/ _ \ '_ \| | '_ \| | __|
+| |_) | (_| \__ \ ||  __/ |_) | | | | | | |_
+| .__/ \__,_|___/\__\___|_.__/|_|_| |_|_|\__|
+|_|
+
+ Go implementation of pastebinit.
+ Version: %s
+ Build: %s
+
+`
 )
 
 var (
 	baseuri string
+
+	debug bool
+	vrsn  bool
 
 	username = os.Getenv("PASTEBINIT_USERNAME")
 	password = os.Getenv("PASTEBINIT_PASS")
@@ -88,13 +108,35 @@ func postPaste(content []byte) (string, error) {
 }
 
 func init() {
+	// parse flags
 	flag.StringVar(&baseuri, "b", "https://paste.j3ss.co/", "pastebin base url")
+
+	flag.BoolVar(&vrsn, "version", false, "print version and exit")
+	flag.BoolVar(&vrsn, "v", false, "print version and exit (shorthand)")
+	flag.BoolVar(&debug, "d", false, "run in debug mode")
+
+	flag.Usage = func() {
+		fmt.Fprint(os.Stderr, fmt.Sprintf(BANNER, version.VERSION, version.GITCOMMIT))
+		flag.PrintDefaults()
+	}
+
 	flag.Parse()
+
+	if vrsn {
+		fmt.Printf("pepper version %s, build %s", version.VERSION, version.GITCOMMIT)
+		os.Exit(0)
+	}
+
+	// set log level
+	if debug {
+		logrus.SetLevel(logrus.DebugLevel)
+	}
 
 	// make sure uri ends with trailing /
 	if !strings.HasSuffix(baseuri, "/") {
 		baseuri += "/"
 	}
+
 	// make sure it starts with http(s)://
 	if !strings.HasPrefix(baseuri, "http") {
 		baseuri = "http://" + baseuri

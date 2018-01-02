@@ -7,15 +7,25 @@ Go implementation of pastebinit. Host your own pastebin and post things there. E
 
 *Why you ask?* because pastebin.com has ads (booo) & is fugly as eff.
 
-### Usage
+## Installation
 
-#### Command Line Tool
+#### Binaries
 
-The command line tool can be installed as follows:
+- **darwin** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.0.0/pastebinit-darwin-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.0.0/pastebinit-darwin-amd64)
+- **freebsd** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.0.0/pastebinit-freebsd-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.0.0/pastebinit-freebsd-amd64)
+- **linux** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.0.0/pastebinit-linux-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.0.0/pastebinit-linux-amd64) / [arm](https://github.com/jessfraz/pastebinit/releases/download/v0.0.0/pastebinit-linux-arm) / [arm64](https://github.com/jessfraz/pastebinit/releases/download/v0.0.0/pastebinit-linux-arm64)
+- **solaris** [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.0.0/pastebinit-solaris-amd64)
+- **windows** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.0.0/pastebinit-windows-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.0.0/pastebinit-windows-amd64)
+
+#### Via Go
 
 ```bash
 $ go get github.com/jessfraz/pastebinit
 ```
+
+## Usage
+
+### Client
 
 You need to set `PASTEBINIT_USERNAME` and `PASTEBINIT_PASS` as enviornment variables,
 so the client knows how to auth on paste. To change the uri, pass the `-b` flag.
@@ -30,20 +40,19 @@ $ docker images | pastebinit -b yoururl.com
 $ pastebinit -b yoururl.com server.go
 ```
 
-
-#### Server
+### Server
 
 The server can be run in a docker container, via the included dockerfile.
-You can use my image on the hub: [jess/pastebinit](https://registry.hub.docker.com/u/jess/pastebinit/)
+You can use my image on the hub: [jess/pastebinit-server](https://registry.hub.docker.com/u/jess/pastebinit-server/)
 or you can build the image yourself via:
 
 ```bash
 $ git clone git@github.com/jessfraz/pastebinit.git
 $ cd pastebinit
-$ docker build -i your_name/pastebinit .
+$ docker build -i your_name/pastebinit ./server
 ```
 
-To run the image do, you need to pass the `PASTEBINIT_USERNAME` and `PASTEBINIT_PASS` enviornment variables to the container.
+To run the image do, you need to pass the `PASTEBINIT_USERNAME` and `PASTEBINIT_PASS` environment variables to the container.
 You can also pass the following options as cli flags to the binary in the container, these are:
 
 - `baseuri, -b`: The uri of the domain you are going to be hosting this on, ex: https://paste.j3ss.co
