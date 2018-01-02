@@ -10,8 +10,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/Sirupsen/logrus"
 	"github.com/jessfraz/pastebinit/version"
+	"github.com/sirupsen/logrus"
 )
 
 const (

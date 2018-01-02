@@ -12,8 +12,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/Sirupsen/logrus"
 	"github.com/buildkite/terminal"
+	"github.com/sirupsen/logrus"
 	"github.com/sourcegraph/syntaxhighlight"
 )
 
