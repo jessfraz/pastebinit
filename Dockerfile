@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM golang:alpine as builder
 MAINTAINER Jessica Frazelle <jess@linux.com>
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
@@ -7,21 +7,26 @@ ENV GOPATH /go
 RUN	apk add --no-cache \
 	ca-certificates
 
-COPY server/static /src/static
 COPY . /go/src/github.com/jessfraz/pastebinit
 
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \
-		go \
 		git \
 		gcc \
 		libc-dev \
 		libgcc \
+		make \
 	&& cd /go/src/github.com/jessfraz/pastebinit \
-	&& go build -o /usr/bin/pastebinit-server ./server \
+	&& make static \
+	&& mv pastebinit /usr/bin/pastebinit \
 	&& apk del .build-deps \
 	&& rm -rf /go \
 	&& echo "Build complete."
 
+FROM scratch
 
-ENTRYPOINT [ "pastebinit-server" ]
+COPY --from=builder /usr/bin/pastebinit /usr/bin/pastebinit
+COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
+
+ENTRYPOINT [ "pastebinit" ]
+CMD [ "--help" ]
