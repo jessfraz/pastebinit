@@ -28,5 +28,7 @@ FROM scratch
 COPY --from=builder /usr/bin/pastebinit /usr/bin/pastebinit
 COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
 
+COPY server/static /src/static
+
 ENTRYPOINT [ "pastebinit" ]
 CMD [ "--help" ]
