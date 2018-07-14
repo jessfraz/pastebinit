@@ -1,10 +1,14 @@
 #!/bin/bash
 set -eu
 
-if [[ -z $PACKAGECLOUD_TOKEN ]] ; then
-  echo "GITHUB_RELEASE_ACCESS_TOKEN isn't set"
+if [[ -z ${PACKAGECLOUD_TOKEN:-} ]] ; then
+  echo "PACKAGECLOUD_TOKEN isn't set"
   exit 1
 fi
+
+run_in_container() {
+  docker-compose run --rm terminal "$@"
+}
 
 # Creates packages based on the given gzipped terminal-to-html release file
 # Usage: build_package [gzip source] [version] [arch] [package type] [final package path]
@@ -26,7 +30,7 @@ build_package() {
 
   echo "--- Creating package for $gzip_source into $final_package_path"
 
-  docker-compose run --rm terminal fpm -s dir \
+  run_in_container fpm -s dir \
       -C "$package_tmp_dir" \
       -v "$version" \
       -a "$arch" \
@@ -53,7 +57,7 @@ echo "+++ :package: Packaging ${version}"
 
 [ -d packages ] && rm -r packages; mkdir packages
 
-for arch in amd64 386 arm; do
+for arch in amd64 i386 armel; do
   arch_dist_file="dist/terminal-to-html-$version-linux-$arch.gz"
 
   echo "+++ :package: Building deb for $arch"
@@ -63,7 +67,7 @@ for arch in amd64 386 arm; do
 
   for deb_os in ubuntu/trusty; do
     echo "+++ :packagecloud: Pushing deb for $deb_os"
-    package_cloud push "buildkite/terminal/$deb_os" "$deb_package_path"
+    run_in_container package_cloud push "buildkite/terminal/$deb_os" "$deb_package_path"
   done
 
   echo "+++ :package: Building rpm for $arch"
@@ -73,6 +77,6 @@ for arch in amd64 386 arm; do
 
   for rpm_os in el/7; do
     echo "+++ :packagecloud: Pushing rpm for $rpm_os"
-    package_cloud push "buildkite/terminal/$rpm_os" "$rpm_package_path"
+    run_in_container package_cloud push "buildkite/terminal/$rpm_os" "$rpm_package_path"
   done
 done
