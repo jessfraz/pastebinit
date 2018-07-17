@@ -2,61 +2,70 @@
 
 
 [[projects]]
-  digest = "1:93c4ac05bb03171d300fea3b907a1652eb56af98f391e362357bff20a5d48b25"
+  digest = "1:e2ea4e5f3a9dd41db55135685d260d02d46f640c240c8910cc1be958f646e913"
   name = "github.com/buildkite/terminal"
   packages = ["."]
-  pruneopts = ""
+  pruneopts = "NUT"
   revision = "05a77905c468b9150cac41298fdb8a0735024d42"
   version = "v3.1.0"
 
 [[projects]]
-  digest = "1:f2cc92b78b2f3b76ab0f9daddddd28627bcfcc6cacf119029aa3850082d95079"
+  branch = "master"
+  digest = "1:84622ce7bfd77ffc10afbc3b6c6b1fd3cc8d42b37ddbe6bd9b62b2411462190f"
+  name = "github.com/genuinetools/pkg"
+  packages = ["cli"]
+  pruneopts = "NUT"
+  revision = "54e648406b2d697f34beb065648394289221ede6"
+
+[[projects]]
+  digest = "1:6989062eb7ccf25cf38bf4fe3dba097ee209f896cda42cefdca3927047bef7b6"
   name = "github.com/sirupsen/logrus"
   packages = ["."]
-  pruneopts = ""
+  pruneopts = "NUT"
   revision = "c155da19408a8799da419ed3eeb0cb5db0ad5dbc"
   version = "v1.0.5"
 
 [[projects]]
   branch = "master"
-  digest = "1:2572a527898d3259bef02863f0c45a8500eed4b263daae03028693e36a66441e"
+  digest = "1:8b7ebf4dccd5fdad5e59de1f00045a35ff7a3e7f0ef9fd8e59ba0f0c389dfd1a"
   name = "github.com/sourcegraph/annotate"
   packages = ["."]
-  pruneopts = ""
+  pruneopts = "NUT"
   revision = "f4cad6c6324d3f584e1743d8b3e0e017a5f3a636"
 
 [[projects]]
   branch = "master"
-  digest = "1:95f5d810ad45968a8506cba8e7a8cd606ae50f52e5f90343ff9b9eba30d106c9"
+  digest = "1:71cbd1bebcbe8b215d26b85b5e3977ca4a022962d99866a24a987a866bf3e7ed"
   name = "github.com/sourcegraph/syntaxhighlight"
   packages = ["."]
-  pruneopts = ""
+  pruneopts = "NUT"
   revision = "bd320f5d308e1a3c4314c678d8227a0d72574ae7"
 
 [[projects]]
   branch = "master"
-  digest = "1:e79c3d6b195477b429f017aaa02af135249bbdff31c9acbd8a93bb37a4ef7d3b"
+  digest = "1:3f3a05ae0b95893d90b9b3b5afdb79a9b3d96e4e36e099d841ae602e4aca0da8"
   name = "golang.org/x/crypto"
   packages = ["ssh/terminal"]
-  pruneopts = ""
+  pruneopts = "NUT"
   revision = "a49355c7e3f8fe157a85be2f77e6e269a0f89602"
 
 [[projects]]
   branch = "master"
-  digest = "1:880f5ae3ffdd8741fe179f0f70b46df57fcdd746f3a0e9d0e189bb6a241535e4"
+  digest = "1:64107e3c8f52f341891a565d117bf263ed396fe0c16bad19634b25be25debfaa"
   name = "golang.org/x/sys"
   packages = [
     "unix",
     "windows",
   ]
-  pruneopts = ""
-  revision = "1b2967e3c290b7c545b3db0deeda16e9be4f98a2"
+  pruneopts = "NUT"
+  revision = "ac767d655b305d4e9612f5f6e33120b9176c4ad4"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
     "github.com/buildkite/terminal",
+    "github.com/genuinetools/pkg/cli",
     "github.com/sirupsen/logrus",
     "github.com/sourcegraph/syntaxhighlight",
   ]

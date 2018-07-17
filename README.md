@@ -13,6 +13,7 @@ Go implementation of pastebinit. Host your own pastebin and post things there. E
  * [Usage](README.md#usage)
    * [Client](README.md#client)
    * [Server](README.md#server)
+      * [Running in a container](README.md#running-in-a-container)
 
 ## Installation
 
@@ -30,7 +31,7 @@ $ go get github.com/jessfraz/pastebinit
 
 ### Client
 
-You need to set `PASTEBINIT_USERNAME` and `PASTEBINIT_PASS` as enviornment variables,
+You need to set `PASTEBINIT_USERNAME` and `PASTEBINIT_PASS` as environment variables,
 so the client knows how to auth on paste. To change the uri, pass the `-b` flag.
 
 Just like the pastebinit you are used to, this client can read from stdin & input. Heres some examples:
@@ -43,46 +44,92 @@ $ docker images | pastebinit -b yoururl.com
 $ pastebinit -b yoururl.com server.go
 ```
 
+```console
+$ pastebinit -h
+pastebinit -  Command line paste bin.
+
+Usage: pastebinit <command>
+
+Flags:
+
+  -b, --uri       pastebin base uri (default: https://paste.j3ss.co/)
+  -d, --debug     enable debug logging (default: false)
+  -p, --password  password (or env var PASTEBINIT_PASSWORD) (default: <none>)
+  -u, --username  username (or env var PASTEBINIT_USERNAME)
+
+Commands:
+
+  server   Run the server.
+  version  Show the version information.
+```
+
 ### Server
 
 The server can be run in a docker container, via the included dockerfile.
-You can use my image on the hub: [jess/pastebinit-server](https://registry.hub.docker.com/u/jess/pastebinit-server/)
+You can use my image on the hub: [jess/pastebinit](https://registry.hub.docker.com/u/jess/pastebinit/)
 or you can build the image yourself via:
 
-```bash
+```console
 $ git clone git@github.com/jessfraz/pastebinit.git
 $ cd pastebinit
-$ docker build -i your_name/pastebinit ./server
+$ docker build -t your_name/pastebinit .
 ```
 
 To run the image do, you need to pass the `PASTEBINIT_USERNAME` and `PASTEBINIT_PASS` environment variables to the container.
 You can also pass the following options as cli flags to the binary in the container, these are:
 
-- `baseuri, -b`: The uri of the domain you are going to be hosting this on, ex: https://paste.j3ss.co
-- `port, -p`: The port to run the app on, defaults to 8080
-- `storage, s`: The folder to store your posted pastes in, defaults to `files/`
-- `certFile, --cert`: For https servers, path to ssl certificate
-- `keyFile, --key`: For https servers, path to ssl key
+```console
+$ pastebinit server -h
+Usage: pastebinit server [OPTIONS]
+
+Run the server.
+
+Flags:
+
+  --asset-path    Path to assets and templates (default: /src/static)
+  -b, --uri       pastebin base uri (default: https://paste.j3ss.co/)
+  --cert          path to ssl cert (default: <none>)
+  -d, --debug     enable debug logging (default: false)
+  --key           path to ssl key (default: <none>)
+  -p, --password  password (or env var PASTEBINIT_PASSWORD) (default: <none>)
+  --port          port for server to run on (default: 8080)
+  -s, --storage   directory to store pastes (default: /etc/pastebinit/files)
+  -u, --username  username (or env var PASTEBINIT_USERNAME)
+```
+
+#### Running in a container
 
 Example command to run the container:
 
 ```console
 # to share the paste volume with your host
-$ docker run -d --name=pastebinit --restart=always \
--e PASTEBINIT_USERNAME=your_username -e PASTEBINIT_PASS=your_pass \
--v  /home/jess/pastes:/src/files \
-docker_image_name -b https://myserver.com
+$ docker run -d \
+    --name=pastebinit \
+    --restart=always \
+    -e PASTEBINIT_USERNAME=your_username \
+    -e PASTEBINIT_PASS=your_pass \
+    -v  /home/jess/pastes:/src/files \
+    jess/pastebinit server \
+        -b https://myserver.com
 
 # to not share the paste volume
-$ docker run -d --name=pastebinit --restart=always \
--e PASTEBINIT_USERNAME=your_username -e PASTEBINIT_PASS=your_pass \
-docker_image_name -b https://myserver.com
+$ docker run -d \
+    --name=pastebinit \
+    --restart=always \
+    -e PASTEBINIT_USERNAME=your_username \
+    -e PASTEBINIT_PASS=your_pass \
+    jess/pastebinit server \
+        -b https://myserver.com
 
 # ssl example
-$ docker run -d --name=pastebinit --restart=always \
--e PASTEBINIT_USERNAME=your_username -e PASTEBINIT_PASS=your_pass \
--v /path/to/ssl/stuffs:/ssl \
-docker_image_name -b https://myserver.com --cert=/ssl/cert.crt --key=/ssl/key.key
+$ docker run -d 
+    --name=pastebinit \
+    --restart=always \
+    -e PASTEBINIT_USERNAME=your_username \
+    -e PASTEBINIT_PASS=your_pass \
+    -v /path/to/ssl/stuffs:/ssl \
+    jess/pastebinit server \
+        -b https://myserver.com --cert=/ssl/cert.crt --key=/ssl/key.key
 ```
 
 Then you are all set! Happy pasting!
