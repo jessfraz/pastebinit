@@ -18,39 +18,39 @@ jobs:
       deploy:
         provider: releases
         file:
-          - cross/pastebinit-linux-amd64.md5
-          - cross/pastebinit-windows-386.sha256
-          - cross/pastebinit-linux-arm
-          - cross/pastebinit-darwin-amd64.md5
           - cross/pastebinit-darwin-amd64
-          - cross/pastebinit-solaris-amd64.md5
-          - cross/pastebinit-linux-arm64.sha256
-          - cross/pastebinit-linux-arm.sha256
-          - cross/pastebinit-linux-386.sha256
+          - cross/pastebinit-darwin-amd64.md5
+          - cross/pastebinit-darwin-amd64.sha256
+          - cross/pastebinit-darwin-386
           - cross/pastebinit-darwin-386.md5
-          - cross/pastebinit-windows-386.md5
+          - cross/pastebinit-darwin-386.sha256
+          - cross/pastebinit-freebsd-amd64
           - cross/pastebinit-freebsd-amd64.md5
-          - cross/pastebinit-linux-arm64.md5
-          - cross/pastebinit-linux-arm64
           - cross/pastebinit-freebsd-amd64.sha256
-          - cross/pastebinit-freebsd-386.md5
-          - cross/pastebinit-linux-amd64.sha256
-          - cross/pastebinit-linux-386.md5
           - cross/pastebinit-freebsd-386
+          - cross/pastebinit-freebsd-386.md5
+          - cross/pastebinit-freebsd-386.sha256
+          - cross/pastebinit-linux-arm
+          - cross/pastebinit-linux-arm.md5
+          - cross/pastebinit-linux-arm.sha256
+          - cross/pastebinit-linux-arm64
+          - cross/pastebinit-linux-arm64.md5
+          - cross/pastebinit-linux-arm64.sha256
+          - cross/pastebinit-linux-amd64
+          - cross/pastebinit-linux-amd64.md5
+          - cross/pastebinit-linux-amd64.sha256
+          - cross/pastebinit-linux-386
+          - cross/pastebinit-linux-386.md5
+          - cross/pastebinit-linux-386.sha256
+          - cross/pastebinit-solaris-amd64
+          - cross/pastebinit-solaris-amd64.md5
           - cross/pastebinit-solaris-amd64.sha256
           - cross/pastebinit-windows-amd64
           - cross/pastebinit-windows-amd64.md5
           - cross/pastebinit-windows-amd64.sha256
-          - cross/pastebinit-linux-arm.md5
-          - cross/pastebinit-darwin-386.sha256
-          - cross/pastebinit-darwin-amd64.sha256
           - cross/pastebinit-windows-386
-          - cross/pastebinit-solaris-amd64
-          - cross/pastebinit-darwin-386
-          - cross/pastebinit-linux-386
-          - cross/pastebinit-freebsd-amd64
-          - cross/pastebinit-freebsd-386.sha256
-          - cross/pastebinit-linux-amd64
+          - cross/pastebinit-windows-386.md5
+          - cross/pastebinit-windows-386.sha256
         skip_cleanup: true
         on:
           tags: true

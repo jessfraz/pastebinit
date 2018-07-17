@@ -1,25 +1,28 @@
-pastebinit
-==========
+# pastebinit
 
-[![Travis CI](https://travis-ci.org/jessfraz/pastebinit.svg?branch=master)](https://travis-ci.org/jessfraz/pastebinit)
+[![Travis CI](https://img.shields.io/travis/jessfraz/pastebinit.svg?style=for-the-badge)](https://travis-ci.org/jessfraz/pastebinit)
+[![GoDoc](https://img.shields.io/badge/godoc-reference-5272B4.svg?style=for-the-badge)](https://godoc.org/github.com/jessfraz/pastebinit)
 
 Go implementation of pastebinit. Host your own pastebin and post things there. Example file I posted [here](https://paste.j3ss.co/F6CSRR5l).
 
-*Why you ask?* because pastebin.com has ads (booo) & is fugly as eff.
+*Why? You ask..* because pastebin.com has ads (booo) & is fugly as eff.
+
+ * [Installation](README.md#installation)
+      * [Binaries](README.md#binaries)
+      * [Via Go](README.md#via-go)
+ * [Usage](README.md#usage)
+   * [Client](README.md#client)
+   * [Server](README.md#server)
 
 ## Installation
 
 #### Binaries
 
-- **darwin** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.2.1/pastebinit-darwin-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.2.1/pastebinit-darwin-amd64)
-- **freebsd** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.2.1/pastebinit-freebsd-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.2.1/pastebinit-freebsd-amd64)
-- **linux** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.2.1/pastebinit-linux-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.2.1/pastebinit-linux-amd64) / [arm](https://github.com/jessfraz/pastebinit/releases/download/v0.2.1/pastebinit-linux-arm) / [arm64](https://github.com/jessfraz/pastebinit/releases/download/v0.2.1/pastebinit-linux-arm64)
-- **solaris** [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.2.1/pastebinit-solaris-amd64)
-- **windows** [386](https://github.com/jessfraz/pastebinit/releases/download/v0.2.1/pastebinit-windows-386) / [amd64](https://github.com/jessfraz/pastebinit/releases/download/v0.2.1/pastebinit-windows-amd64)
+For installation instructions from binaries please visit the [Releases Page](https://github.com/jessfraz/pastebinit/releases).
 
 #### Via Go
 
-```bash
+```console
 $ go get github.com/jessfraz/pastebinit
 ```
 
@@ -32,7 +35,7 @@ so the client knows how to auth on paste. To change the uri, pass the `-b` flag.
 
 Just like the pastebinit you are used to, this client can read from stdin & input. Heres some examples:
 
-```bash
+```console
 # pipe to pastebinit
 $ docker images | pastebinit -b yoururl.com
 
@@ -63,7 +66,7 @@ You can also pass the following options as cli flags to the binary in the contai
 
 Example command to run the container:
 
-```bash
+```console
 # to share the paste volume with your host
 $ docker run -d --name=pastebinit --restart=always \
 -e PASTEBINIT_USERNAME=your_username -e PASTEBINIT_PASS=your_pass \
@@ -82,4 +85,4 @@ $ docker run -d --name=pastebinit --restart=always \
 docker_image_name -b https://myserver.com --cert=/ssl/cert.crt --key=/ssl/key.key
 ```
 
-Then you are all set! Happy pasteing!
+Then you are all set! Happy pasting!
