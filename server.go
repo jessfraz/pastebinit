@@ -10,6 +10,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 
@@ -172,7 +173,7 @@ func (cmd *serverCommand) pasteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	filename := filepath.Join(cmd.storage, strings.Trim(r.URL.Path, "/"))
+	filename := filepath.Join(cmd.storage, filepath.FromSlash(path.Clean("/"+strings.Trim(r.URL.Path, "/"))))
 
 	var handler func(data []byte) (string, error)
 
@@ -213,7 +214,7 @@ func (cmd *serverCommand) pasteHandler(w http.ResponseWriter, r *http.Request) {
 
 	// check if the file exists
 	if _, err := os.Stat(filename); os.IsNotExist(err) {
-		writeError(w, fmt.Sprintf("No such file or directory: %s", filename))
+		writeError(w, fmt.Sprintf("No such file or directory: %s", r.URL.Path))
 		return
 	}
 
