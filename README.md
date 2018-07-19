@@ -31,7 +31,7 @@ $ go get github.com/jessfraz/pastebinit
 
 ### Client
 
-You need to set `PASTEBINIT_USERNAME` and `PASTEBINIT_PASS` as environment variables,
+You need to set `PASTEBINIT_USERNAME` and `PASTEBINIT_PASSWORD` as environment variables,
 so the client knows how to auth on paste. To change the uri, pass the `-b` flag.
 
 Just like the pastebinit you are used to, this client can read from stdin & input. Heres some examples:
@@ -75,7 +75,7 @@ $ cd pastebinit
 $ docker build -t your_name/pastebinit .
 ```
 
-To run the image do, you need to pass the `PASTEBINIT_USERNAME` and `PASTEBINIT_PASS` environment variables to the container.
+To run the image do, you need to pass the `PASTEBINIT_USERNAME` and `PASTEBINIT_PASSWORD` environment variables to the container.
 You can also pass the following options as cli flags to the binary in the container, these are:
 
 ```console
@@ -107,7 +107,7 @@ $ docker run -d \
     --name=pastebinit \
     --restart=always \
     -e PASTEBINIT_USERNAME=your_username \
-    -e PASTEBINIT_PASS=your_pass \
+    -e PASTEBINIT_PASSWORD=your_pass \
     -v  /home/jess/pastes:/src/files \
     jess/pastebinit server \
         -b https://myserver.com
@@ -117,7 +117,7 @@ $ docker run -d \
     --name=pastebinit \
     --restart=always \
     -e PASTEBINIT_USERNAME=your_username \
-    -e PASTEBINIT_PASS=your_pass \
+    -e PASTEBINIT_PASSWORD=your_pass \
     jess/pastebinit server \
         -b https://myserver.com
 
@@ -126,7 +126,7 @@ $ docker run -d
     --name=pastebinit \
     --restart=always \
     -e PASTEBINIT_USERNAME=your_username \
-    -e PASTEBINIT_PASS=your_pass \
+    -e PASTEBINIT_PASSWORD=your_pass \
     -v /path/to/ssl/stuffs:/ssl \
     jess/pastebinit server \
         -b https://myserver.com --cert=/ssl/cert.crt --key=/ssl/key.key

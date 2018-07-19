@@ -100,7 +100,7 @@ func (cmd *serverCommand) Run(ctx context.Context, args []string) error {
 		Addr:    ":" + cmd.port,
 		Handler: mux,
 	}
-	logrus.Infof("Starting server on port %d", cmd.port)
+	logrus.Infof("Starting server on port %s", cmd.port)
 	if len(cmd.cert) > 0 && len(cmd.key) > 0 {
 		return server.ListenAndServeTLS(cmd.cert, cmd.key)
 	}
