@@ -164,6 +164,10 @@ func postPaste(content []byte) (string, error) {
 		return "", fmt.Errorf("Unauthorized. Please check your username and pass. %d", resp.StatusCode)
 	}
 
+	if resp.StatusCode == 413 {
+		return "", fmt.Errorf("%d: Payload Too Large. Make sure your proxy or load balancer allows request bodies as large as any file you wish to accept.", resp.StatusCode)
+	}
+
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return "", fmt.Errorf("reading response body failed: %v", err)
