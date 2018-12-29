@@ -11,6 +11,14 @@ Go implementation of pastebinit. Host your own pastebin and post things there. E
 
 <!-- toc -->
 
+- [Installation](#installation)
+    + [Binaries](#binaries)
+    + [Via Go](#via-go)
+- [Usage](#usage)
+  * [Client](#client)
+  * [Server](#server)
+    + [Running in a container](#running-in-a-container)
+
 <!-- tocstop -->
 
 ## Installation
