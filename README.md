@@ -7,13 +7,11 @@ Go implementation of pastebinit. Host your own pastebin and post things there. E
 
 *Why? You ask..* because pastebin.com has ads (booo) & is fugly as eff.
 
- * [Installation](README.md#installation)
-      * [Binaries](README.md#binaries)
-      * [Via Go](README.md#via-go)
- * [Usage](README.md#usage)
-   * [Client](README.md#client)
-   * [Server](README.md#server)
-      * [Running in a container](README.md#running-in-a-container)
+**Table of Contents**
+
+<!-- toc -->
+
+<!-- tocstop -->
 
 ## Installation
 
