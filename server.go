@@ -231,7 +231,6 @@ func (cmd *serverCommand) pasteHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	io.WriteString(w, data)
-	return
 }
 
 // pasteUploadHander is the request handler for /paste
@@ -280,7 +279,6 @@ func (cmd *serverCommand) pasteUploadHandler(w http.ResponseWriter, r *http.Requ
 		"uri": baseuri + id,
 	})
 	logrus.Infof("paste %q posted successfully", id)
-	return
 }
 
 // uuid generates a uuid for the paste.
@@ -319,5 +317,4 @@ func writeError(w http.ResponseWriter, msg string) {
 		"error": msg,
 	})
 	logrus.Printf("writing error: %s", msg)
-	return
 }

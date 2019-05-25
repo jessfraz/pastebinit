@@ -58,7 +58,7 @@ func main() {
 	// Set the before function.
 	p.Before = func(ctx context.Context) error {
 		// On ^C, or SIGTERM handle exit.
-		signals := make(chan os.Signal, 0)
+		signals := make(chan os.Signal)
 		signal.Notify(signals, os.Interrupt)
 		signal.Notify(signals, syscall.SIGTERM)
 		_, cancel := context.WithCancel(ctx)
@@ -161,7 +161,7 @@ func postPaste(content []byte) (string, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode == 401 {
-		return "", fmt.Errorf("Unauthorized. Please check your username and pass. %d", resp.StatusCode)
+		return "", fmt.Errorf("unauthorized - please check your username and password: %d", resp.StatusCode)
 	}
 
 	if resp.StatusCode == 413 {
