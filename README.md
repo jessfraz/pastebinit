@@ -12,14 +12,13 @@ Go implementation of pastebinit. Host your own pastebin and post things there. E
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [pastebinit](#pastebinit)
-  - [Installation](#installation)
-      - [Binaries](#binaries)
-      - [Via Go](#via-go)
-  - [Usage](#usage)
-    - [Client](#client)
-    - [Server](#server)
-      - [Running in a container](#running-in-a-container)
+- [Installation](#installation)
+    - [Binaries](#binaries)
+    - [Via Go](#via-go)
+- [Usage](#usage)
+  - [Client](#client)
+  - [Server](#server)
+    - [Running in a container](#running-in-a-container)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
