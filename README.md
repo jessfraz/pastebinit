@@ -1,3 +1,18 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [pastebinit](#pastebinit)
+  - [Installation](#installation)
+      - [Binaries](#binaries)
+      - [Via Go](#via-go)
+  - [Usage](#usage)
+    - [Client](#client)
+    - [Server](#server)
+      - [Running in a container](#running-in-a-container)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # pastebinit
 
 [![make-all](https://github.com/jessfraz/pastebinit/workflows/make%20all/badge.svg)](https://github.com/jessfraz/pastebinit/actions?query=workflow%3A%22make+all%22)
