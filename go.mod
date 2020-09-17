@@ -1,5 +1,7 @@
 module github.com/jessfraz/pastebinit
 
+go 1.14
+
 require (
 	github.com/buildkite/terminal v3.1.0+incompatible
 	github.com/davecgh/go-spew v1.1.1 // indirect
