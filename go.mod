@@ -13,7 +13,7 @@ require (
 	github.com/sourcegraph/annotate v0.0.0-20160123013949-f4cad6c6324d // indirect
 	github.com/sourcegraph/syntaxhighlight v0.0.0-20170531221838-bd320f5d308e
 	github.com/stretchr/testify v1.2.2 // indirect
-	golang.org/x/crypto v0.0.0-20180621125126-a49355c7e3f8 // indirect
+	golang.org/x/crypto v0.1.0 // indirect
 	gopkg.in/airbrake/gobrake.v2 v2.0.9 // indirect
 	gopkg.in/gemnasium/logrus-airbrake-hook.v2 v2.1.2 // indirect
 )
