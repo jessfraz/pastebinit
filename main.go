@@ -58,7 +58,7 @@ func main() {
 	// Set the before function.
 	p.Before = func(ctx context.Context) error {
 		// On ^C, or SIGTERM handle exit.
-		signals := make(chan os.Signal)
+		signals := make(chan os.Signal, 1)
 		signal.Notify(signals, os.Interrupt)
 		signal.Notify(signals, syscall.SIGTERM)
 		_, cancel := context.WithCancel(ctx)
