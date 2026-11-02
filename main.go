@@ -7,7 +7,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 	"os/signal"
@@ -121,7 +121,7 @@ func main() {
 
 // readFromStdin returns everything in stdin.
 func readFromStdin() []byte {
-	stdin, err := ioutil.ReadAll(os.Stdin)
+	stdin, err := io.ReadAll(os.Stdin)
 	if err != nil {
 		logrus.Fatalf("reading from stdin failed: %v", err)
 	}
@@ -134,7 +134,7 @@ func readFromFile(filename string) []byte {
 		logrus.Fatalf("No such file or directory: %q", filename)
 	}
 
-	file, err := ioutil.ReadFile(filename)
+	file, err := os.ReadFile(filename)
 	if err != nil {
 		logrus.Fatalf("reading from file %q failed: %v", filename, err)
 	}
@@ -168,7 +168,7 @@ func postPaste(content []byte) (string, error) {
 		return "", fmt.Errorf("%d: Payload Too Large. Make sure your proxy or load balancer allows request bodies as large as any file you wish to accept", resp.StatusCode)
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return "", fmt.Errorf("reading response body failed: %v", err)
 	}
