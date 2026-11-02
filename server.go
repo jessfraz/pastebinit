@@ -7,7 +7,6 @@ import (
 	"flag"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"path"
@@ -219,7 +218,7 @@ func (cmd *serverCommand) pasteHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// read the file
-	src, err := ioutil.ReadFile(filename)
+	src, err := os.ReadFile(filename)
 	if err != nil {
 		writeError(w, fmt.Sprintf("Reading file %s failed: %v", filename, err))
 		return
@@ -254,7 +253,7 @@ func (cmd *serverCommand) pasteUploadHandler(w http.ResponseWriter, r *http.Requ
 	}
 
 	// read the body of the paste
-	content, err := ioutil.ReadAll(r.Body)
+	content, err := io.ReadAll(r.Body)
 	if err != nil {
 		writeError(w, fmt.Sprintf("reading from body failed: %v", err))
 		return
@@ -269,7 +268,7 @@ func (cmd *serverCommand) pasteUploadHandler(w http.ResponseWriter, r *http.Requ
 
 	// write to file
 	file := filepath.Join(cmd.storage, id)
-	if err := ioutil.WriteFile(file, content, 0755); err != nil {
+	if err := os.WriteFile(file, content, 0755); err != nil {
 		writeError(w, fmt.Sprintf("writing file to %q failed: %v", file, err))
 		return
 	}
